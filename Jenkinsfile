@@ -22,6 +22,7 @@ pipeline {
                     sh 'ssh -p 2222 puzzler@openssh-server "whoami"'
                     sh 'ssh -p 2222 puzzler@openssh-server "mkdir -p ~/jenkins-techlab/${ARTIFACT}/1.0/"'
                     sh "scp -P 2222 target/*.jar puzzler@openssh-server:~/jenkins-techlab/${ARTIFACT}/1.0/"
+                    sh "ssh -o StrictHostKeyChecking=no user@product.company.com 'echo $HOME'"
                 }
                 archiveArtifacts 'target/*.?ar'
                 junit 'target/**/*.xml'  // Requires JUnit plugin
